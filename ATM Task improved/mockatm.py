@@ -84,15 +84,17 @@ def register():
 def bank_operation(user):
   print(f"Welcome {user['first_name']} {user['last_name']}")
 
-  selected_option = int(input("What would you like to do? (1) deposit (2) withdrawal (3) Logout (4) Exit \n"))
+  selected_option = int(input("What would you like to do? (1) deposit (2) withdrawal (3) Balance (4) Logout (5) Exit \n"))
 
   if selected_option == 1:
       deposit_operation()
   elif selected_option == 2:
       withdrawal_operation()
   elif selected_option == 3:
-      logout()
+      get_current_balance()
   elif selected_option == 4:
+      logout()
+  elif selected_option == 5:
       exit()
   else:
 

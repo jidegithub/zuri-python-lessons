@@ -7,12 +7,16 @@ with open('./users.json') as user_json_file:
 # print(datalist)
 
 current_user = ""
+current_user_index = None
 
 def does_account_number_exist(account_number):
-  for user in datalist:
+  for index, user in enumerate(datalist):
     if(account_number == user["account_number"]):
       global current_user
+      global current_user_index
+
       current_user = user
+      current_user_index = index 
       return True
       break
   return False
@@ -43,5 +47,22 @@ def create(account_number, first_name, last_name, email, password, iden):
   }
   append_list(new_data)
   return True
+
+def update_account_balance(amount, type):
+  if(type == "deposit"):
+    current_user["account_balance"] = current_user["account_balance"] + amount
+    updated_current_user = current_user
+  elif(type == "withdrawal"):
+    current_user["account_balance"] = current_user["account_balance"] - amount
+    updated_current_user = current_user
+  else:
+    return None
+
+  append_list(updated_current_user)
+  # print(current_user_index)
+
+def get_account_balance():
+  return current_user["account_balance"]
+
 
   

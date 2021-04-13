@@ -87,16 +87,12 @@ def bank_operation(user):
   selected_option = int(input("What would you like to do? (1) deposit (2) withdrawal (3) Logout (4) Exit \n"))
 
   if selected_option == 1:
-
       deposit_operation()
   elif selected_option == 2:
-
       withdrawal_operation()
   elif selected_option == 3:
-
       logout()
   elif selected_option == 4:
-
       exit()
   else:
 
@@ -106,6 +102,9 @@ def bank_operation(user):
 
 def withdrawal_operation():
   print("withdrawal")
+  amount = int(input("how much do you want to withdraw (NGN)? \n"))
+  users.update_account_balance(amount, "withdrawal")
+  return get_current_balance()
   # get current balance
   # get amount to withdraw
   # check if current balance > withdraw balance
@@ -115,6 +114,9 @@ def withdrawal_operation():
 
 def deposit_operation():
   print("Deposit Operations")
+  amount = int(input("how much do you want to deposit (NGN)? \n"))
+  users.update_account_balance(amount, "deposit")
+  return get_current_balance()
   # get current balance
   # get amount to deposit
   # add deposited amount to current balance
@@ -124,14 +126,9 @@ def deposit_operation():
 def generation_account_number():
   return random.randrange(1111111111, 9999999999)
 
-
-def set_current_balance(user_details, balance):
-  user_details[4] = balance
-
-
-def get_current_balance(user_details):
-  return user_details[4]
-
+def get_current_balance():
+  print("current balance: ")
+  print(users.get_account_balance())
 
 def logout():
   login()
